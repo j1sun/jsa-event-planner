@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>JSA Event Plannning Tool</title>
+  </head>
+
+  <body class="py-4" onload="popupReg()">
+    <div class="container">
+      <h1 class="pb-4">JSA Event Planning Tool</h1>
+
+      <div class="row">
+        <!-- Main info -->
+        <div class="col-9">
+          <!-- Phase info -->
+          <h3>Current Phase: <span id="currentPhase">0</span></h3>
+          <button type="button" class="btn btn-primary" onclick="changePhase()">Move to Phase <span id="nextPhase">1</span></button>
+
+          <!-- For holding event info -->
+          <div id="events" class="my-4 col-6">
+            
+          </div>
+
+          
+        </div>
+
+        <!-- Right column -->
+        <div class="col-3">
+          <div class="card">
+            <div class="card-header">
+              Current Users
+            </div>
+            <ul id="userList" class="list-group list-group-flush text-break">
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer
+      <p>Created by Justin Sun</p>
+      -->
+    </div>
+
+    <!-- Modal for requesting user info -->
+    <div id="regUser" class="modal fade" data-backdrop="static" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <h5 class="modal-title">Welcome to the JSA Event Planning Tool!</h5>
+          </div>
+
+          <div class="modal-body">
+            <div id="userErrors"></div>
+            <p>Please fill in the following info:</p>
+            <form>
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name">
+              </div>
+              <div class="form-group">
+                <label for="position">Position</label>
+                <select class="custom-select" id="position" onchange="checkOfficer()">
+                  <option>Select position</option>
+                  <option>Staff</option>
+                  <option>Officer</option>
+                </select>
+              </div>
+              <div class="form-group" id="passwordForm">
+                <!-- For password if needed -->
+              </div>
+            </form>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" onclick="checkUser()">Enter</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for suggesting an event -->
+    <div class="modal fade" id="suggestModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Suggest Event</h5>
+          </div>
+
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="eventSuggestion">Event Name</label>
+                <input type="text" class="form-control" id="eventSuggestion">
+              </div>
+            </form>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" onclick="suggestEvent()">Suggest</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for deleting an event (admins only) -->
+    <div class="modal fade" id="deleteEventModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Delete Event</h5>
+          </div>
+
+          <div class="modal-body">
+            <p>Are you sure you want to delete this event? This cannot be undone.</p>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-danger" onclick="deleteEvent()">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <script src="script.js"></script>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>
